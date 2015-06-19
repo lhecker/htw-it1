@@ -1,0 +1,21 @@
+"clothing, wear",Kleidung
+fabric,Stoff
+fashion,Mode
+hat,Hut
+cap,Mütze
+scarf,Halstuch
+shirt,Hemd
+sweater,Pullover
+blouse,Bluse
+belt,Gürtel
+trousers,Hose
+skirt,Rock
+suit,Anzug
+jacket,Jacke
+coat,Mantel
+cardigan,Strickjacke
+glove,Handschuh
+tie,Krawatte
+stocking,Strumpf
+shoe,Schuh
+boot,Stiefel

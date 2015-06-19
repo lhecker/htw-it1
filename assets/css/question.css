@@ -1,0 +1,30 @@
+#question-container {
+	margin: 15px auto 70px;
+}
+
+#question-container .btn-success {
+	margin-top: 30px;
+}
+
+#question-dir-selection {
+	display: table;
+	margin: 0 auto 30px;
+}
+
+#question-panel {
+	/* .bg-primary */
+	background-color: #337ab7;
+	color: #fff;
+}
+
+#question-panel > .panel-body {
+	font-size: 200%;
+	line-height: 400%;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#question-answer-selection a:focus {
+	outline: none;
+}

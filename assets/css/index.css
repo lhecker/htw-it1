@@ -1,0 +1,17 @@
+#index-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+	align-items: flex-start;
+	min-height: 100vh;
+	padding: 15px;
+}
+
+#index-container > a {
+	line-height: 60px;
+	flex-grow: 1;
+	flex-basis: 0;
+	margin: 15px;
+}

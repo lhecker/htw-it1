@@ -1,0 +1,20 @@
+trolley,Einkaufswagen
+vegetables,Gemüse
+fruit,Obst
+meat,Fleisch
+sausage,Wurst
+cheese,Käse
+bread,Brot
+roll,Brötchen
+cake,Kuchen
+"pasta, noodles",Nudeln
+rice,Reis
+potatoes,Kartoffeln
+eggs,Eier
+jam,Marmelade
+honey,Honig
+tea,Tee
+coffee,Kaffee
+milk,Milch
+cocoa,Kakao
+chocolate,Schokolade
