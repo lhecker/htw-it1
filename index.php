@@ -19,7 +19,7 @@ echo_html_header(array('assets/css/index.css'));
 				$name = $info->getBasename('.txt');
 
 				?>
-					<a class="btn btn-lg btn-default" href="question.php?lesson=<?php echo rawurlencode($name) ?>"><?php echo $name ?></a>
+					<a class="btn btn-lg btn-default" href="question.php?lesson=<?php echo_url($name) ?>"><?php echo $name ?></a>
 				<?php
 			}
 		}

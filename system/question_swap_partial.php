@@ -1,20 +1,24 @@
-<div class="col-xs-12 col-sm-6 col-lg-4 col-lg-offset-2">
+<div class="col-xs-12 col-sm-6">
 	<div class="panel panel-default" id="question-panel">
 		<div class="panel-body">
-			<?php echo $question ?>
+			<input type="hidden" name="question" value="<?php echo_safe($question) ?>"/>
+			<?php echo_safe($question) ?>
 		</div>
 
 		<?php if ($pronunciation): ?>
 			<div class="panel-footer">
-				<?php echo $pronunciation ?>
+				<?php echo_safe($pronunciation) ?>
 			</div>
 		<?php endif ?>
 	</div>
 </div>
-<div class="col-xs-12 col-sm-6 col-lg-4">
+<div class="col-xs-12 col-sm-6">
 	<ul class="nav nav-pills nav-stacked" id="question-answer-selection">
 		<?php foreach ($answers as $idx => $answer): ?>
-			<li<?php if ($idx === 0) echo ' class="active"' ?> data-value="<?php echo $answer ?>"><a href="#"><?php echo $answer ?></a></li>
+			<li>
+				<input type="radio" name="answer" value="<?php echo_safe($answer) ?>"<?php if ($idx === 0) echo ' checked="checked"' ?>/>
+				<a href="#"><?php echo_safe($answer) ?></a>
+			</li>
 		<?php endforeach ?>
 	</ul>
 </div>

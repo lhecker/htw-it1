@@ -1,21 +1,35 @@
 <?php
 
+function exit_with_400($msg) {
+	header('HTTP/1.1 400 Bad Request');
+	exit($msg);
+}
+
+function exit_with_500($msg) {
+	header('HTTP/1.1 500 Internal Server Error');
+	exit($msg);
+}
+
+
+/*
+ * Will return a sanitized GET or POST string parameter.
+ *
+ * If $required is true it will either return a string with
+ * a length greater than zero or exit with a status code of 400.
+ * If $required is false it will return the param if it exists and otherwise null.
+ */
 function param_common($arr, $name, $required) {
 	$param = isset($arr[$name]) ? $arr[$name] : null;
 
-	if ($param) {
-		$param = trim(htmlentities($param, ENT_QUOTES, "UTF-8"));
-
-		if ($param) {
-			return $param;
-		}
+	if (is_string($param)) {
+		$param = trim($param);
+	} elseif ($param) {
+		exit_with_400('param "' . $name . '" must not be a array but a string');
+	} elseif ($required) {
+		exit_with_400('required param "' . $name . '" not specified');
 	}
 
-	if ($required) {
-		exit('required param "' . $name . '" not specified');
-	}
-
-	return null;
+	return $param;
 }
 
 function param_get($name) {
@@ -35,15 +49,14 @@ function param_post_required($name) {
 }
 
 
-function exit_with_400($msg) {
-	header('HTTP/1.1 400 Bad Request');
-	exit($msg);
+function echo_safe($str) {
+	echo htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
-function exit_with_500($msg) {
-	header('HTTP/1.1 500 Internal Server Error');
-	exit($msg);
+function echo_url($str) {
+	echo rawurlencode($str);
 }
+
 
 
 
@@ -60,7 +73,7 @@ function echo_html_header($css = array()) {
 	<link rel="stylesheet" href="assets/css/index.css"/>
 
 	<?php foreach ($css as $href): ?>
-		<link rel="stylesheet" href="<?php echo $href ?>"/>
+		<link rel="stylesheet" href="<?php echo_safe($href) ?>"/>
 	<?php endforeach ?>
 </head>
 <body><?php
@@ -93,7 +106,7 @@ function echo_html_footer($js = array()) {
 	<script src="vendor/assets/js/bootstrap.js"></script>
 
 	<?php foreach ($js as $src): ?>
-		<script src="<?php echo $src ?>"></script>
+		<script src="<?php echo_safe($src) ?>"></script>
 	<?php endforeach ?>
 </body>
 </html><?php

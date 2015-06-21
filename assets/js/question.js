@@ -1,11 +1,28 @@
 (function() {
-	var $questionAnswer = $('#question-answer');
-	var $questionAnswerSelection = $('#question-answer-selection');
+	var $questionContainer = $('#question-container');
+	var $questionPartialContainer = $('#question-partial-container');
 
-	$questionAnswerSelection.on('click', 'a', function () {
+	$questionPartialContainer.on('click', 'a', function () {
 		var $this = $(this);
 
-		$questionAnswer.val($this.text());
-		$questionAnswerSelection.find('.active').add($this.closest('li')).toggleClass('active');
-	})
+		$this.prev().prop('checked', true);
+	});
+
+	$('#question-dir-selection').on('click', function () {
+		setTimeout(function () {
+			var formElements = $questionContainer.prop('elements');
+			var dir = formElements['dir'].value;
+
+			$.post(
+				$questionContainer.attr('action'),
+				{
+					dir : dir,
+					partial: true,
+				},
+				function (html) {
+					$('#question-partial-container').html(html);
+				}
+			);
+		}, 0);
+	});
 })();

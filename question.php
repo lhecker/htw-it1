@@ -1,8 +1,10 @@
 <?php
 require 'system/util.php';
 
-$param_lesson = param_get('lesson');
+$param_lesson = param_get_required('lesson');
 $param_dir = intval(param_post('dir'));
+$param_answer = param_post('answer');
+$param_partial = param_post('partial');
 
 if ($param_dir < 0 || $param_dir > 1) {
 	exit_with_400('invalid param "dir"');
@@ -59,7 +61,7 @@ $answers = array_map(function ($idx) use($entries, $answer_dir) {
 }, $answers);
 
 
-if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
+if ($param_partial !== null) {
 	require 'system/question_swap_partial.php';
 	return;
 }
@@ -68,21 +70,20 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH
 echo_html_header(array('assets/css/question.css'));
 ?>
 
-<form action="question.php?lesson=<?php echo $param_lesson ?>" method="post" class="container" id="question-container">
-	<input type="hidden" name="answer" value="" id="question-answer"/>
+<form action="answer.php?lesson=<?php echo_url($param_lesson) ?>" method="post" class="container" id="question-container">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="btn-group" id="question-dir-selection" data-toggle="buttons">
 				<?php for ($i = 0; $i < 2; $i++): ?>
 					<label class="btn btn-primary<?php if ($i === $param_dir) echo ' active' ?>">
-						<input type="radio" name="dir" value="<?php echo $i ?>" autocomplete="off"<?php if ($i === $param_dir) echo ' checked="checked"' ?>>
+						<input type="radio" name="dir" value="<?php echo $i ?>" autocomplete="off"<?php if ($i === $param_dir) echo ' checked="checked"' ?>/>
 						<?php echo 'A ' . ($i === 0 ? '>' : '<') . ' B' ?>
 					</label>
 				<?php endfor ?>
 			</div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" id="question-partial-container">
 		<?php require 'system/question_swap_partial.php' ?>
 	</div>
 	<div class="row">
