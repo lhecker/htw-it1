@@ -6,7 +6,7 @@
 	align-content: center;
 	align-items: flex-start;
 	min-height: 100vh;
-	padding: 15px;
+	padding: 0 0 70px;
 }
 
 #index-container > a {

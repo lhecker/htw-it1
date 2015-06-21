@@ -1,13 +1,12 @@
 <div class="col-xs-12 col-sm-6">
 	<div class="panel panel-default" id="question-panel">
-		<div class="panel-body">
+		<div class="panel-body panel-content-lg">
 			<input type="hidden" name="question" value="<?php echo_safe($question) ?>"/>
 			<?php echo_safe($question) ?>
 		</div>
-
 		<?php if ($pronunciation): ?>
 			<div class="panel-footer">
-				<?php echo_safe($pronunciation) ?>
+				<small>Pronunciation:</small> <?php echo_safe($pronunciation) ?>
 			</div>
 		<?php endif ?>
 	</div>

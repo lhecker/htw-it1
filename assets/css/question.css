@@ -1,7 +1,3 @@
-#question-container {
-	margin: 15px auto 70px;
-}
-
 #question-container .btn-success {
 	margin-top: 30px;
 }
@@ -17,11 +13,6 @@
 }
 
 #question-panel > .panel-body {
-	font-size: 200%;
-	line-height: 400%;
-	text-align: center;
-	overflow: hidden;
-	text-overflow: ellipsis;
 	color: #fff;
 }
 

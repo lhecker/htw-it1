@@ -1,0 +1,30 @@
+.row:nth-of-type(n+2) {
+	margin-top: 30px;
+}
+
+#answer-panel {
+	margin-bottom: 0;
+}
+
+#answer-panel.correct {
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+
+#answer-panel.correct > .panel-body {
+	color: #3c763d;
+}
+
+#answer-panel.wrong {
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+#answer-panel.wrong > .panel-body {
+	color: #a94442;
+}
+
+#answer-panel del,
+#answer-panel ins {
+	display: block;
+}

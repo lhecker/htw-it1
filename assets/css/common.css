@@ -1,0 +1,12 @@
+body > .container,
+body > .container-fluid {
+	padding: 15px 15px 70px;
+}
+
+.panel-content-lg {
+	font-size: 200%;
+	padding: 60px 15px;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

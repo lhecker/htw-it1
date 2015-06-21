@@ -7,16 +7,16 @@ $param_answer = param_post('answer');
 $param_partial = param_post('partial');
 
 if ($param_dir < 0 || $param_dir > 1) {
-	exit_with_400('invalid param "dir"');
+	exit_with_400('Invalid param "dir".');
 }
 
 
-$path = './lessons/' . $param_lesson . '.txt';
+$path = __DIR__ . '/lessons/' . $param_lesson . '.txt';
 $handle = @fopen($path, 'r');
 $entries = array();
 
 if (!$handle) {
-	exit_with_400('invalid param "lesson"');
+	exit_with_400('Invalid param "lesson".');
 }
 
 while ($entry = fgetcsv($handle)) {
@@ -34,7 +34,7 @@ while ($entry = fgetcsv($handle)) {
 fclose($handle);
 
 if (!count($entries)) {
-	exit_with_500('contents of file named "' . $param_lesson . '" invalid');
+	exit_with_500('Contents of file named "' . $param_lesson . '" invalid.');
 }
 
 
@@ -88,7 +88,7 @@ echo_html_header(array('assets/css/question.css'));
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-sm-offset-6 col-lg-4 col-lg-offset-6">
-			<button type="submit" class="btn btn-lg btn-success">Senden</button>
+			<button type="submit" class="btn btn-lg btn-success">Überprüfen</button>
 		</div>
 	</div>
 </form>

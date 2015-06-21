@@ -14,7 +14,7 @@
 			var dir = formElements['dir'].value;
 
 			$.post(
-				$questionContainer.attr('action'),
+				location.href,
 				{
 					dir : dir,
 					partial: true,
