@@ -3,50 +3,26 @@ require 'system/util.php';
 
 
 $param_lesson = param_get_required('lesson');
-$param_dir = intval(param_post_required('dir'));
+$param_dir = param_post_dir_required();
 $param_question = param_post_required('question');
 $param_answer = param_post('answer');
 
-if ($param_dir < 0 || $param_dir > 1) {
-	exit_with_400('Invalid param "dir".');
-}
 
+$correct_entry = null;
 
-$path = __DIR__ . '/lessons/' . $param_lesson . '.txt';
-$handle = @fopen($path, 'r');
-$entries = array();
-$correct_answer = null;
-$correct_pronunciation = null;
-
-if (!$handle) {
-	exit_with_400('Invalid param "lesson".');
-}
-
-while ($entry = fgetcsv($handle)) {
-	$entry = array_filter($entry, function ($str) {
-		return $str && is_string($str);
-	});
-
-	$l = count($entry);
-
-	if (($l === 2 || $l === 3) && $entry[$param_dir] === $param_question) {
-		$correct_answer = $entry[1 - $param_dir];
-
-		if ($l === 3) {
-			$correct_pronunciation = $entry[2];
-		}
-
-		break;
+read_lesson($param_lesson, function ($entry) use($param_dir, $param_question, &$correct_entry) {
+	if ($entry[$param_dir] === $param_question) {
+		$correct_entry = $entry;
+		return false;
 	}
-}
+});
 
-fclose($handle);
-
-if (!$correct_answer) {
+if (!$correct_entry) {
 	exit_with_500('Could not find question "' . $param_question . '" in file "' . $param_lesson . '".');
 }
 
-
+$correct_answer = $correct_entry[1 - $param_dir];
+$correct_pronunciation = count($correct_entry) === 3 ? $correct_entry[2] : null;
 $answer_is_correct = $param_answer === $correct_answer;
 
 

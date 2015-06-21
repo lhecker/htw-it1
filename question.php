@@ -3,36 +3,16 @@ require 'system/util.php';
 
 
 $param_lesson = param_get_required('lesson');
-$param_dir = intval(param_post('dir'));
+$param_dir = param_post_dir();
 $param_answer = param_post('answer');
 $param_partial = param_post('partial');
 
-if ($param_dir < 0 || $param_dir > 1) {
-	exit_with_400('Invalid param "dir".');
-}
 
-
-$path = __DIR__ . '/lessons/' . $param_lesson . '.txt';
-$handle = @fopen($path, 'r');
 $entries = array();
 
-if (!$handle) {
-	exit_with_400('Invalid param "lesson".');
-}
-
-while ($entry = fgetcsv($handle)) {
-	$entry = array_filter($entry, function ($str) {
-		return $str && is_string($str);
-	});
-
-	$l = count($entry);
-
-	if ($l === 2 || $l === 3) {
-		$entries[] = $entry;
-	}
-}
-
-fclose($handle);
+read_lesson($param_lesson, function ($entry) use(&$entries) {
+	$entries[] = $entry;
+});
 
 if (!count($entries)) {
 	exit_with_500('Contents of file named "' . $param_lesson . '" invalid.');
