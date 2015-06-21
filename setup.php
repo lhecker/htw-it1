@@ -53,7 +53,7 @@ echo_html_header(array('vendor/assets/css/fileinput.css', 'assets/css/setup.css'
 
 <form enctype="multipart/form-data" action="setup.php" method="post" class="container" id="setup-container">
 	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+		<div class="col-xs-12 col-md-6 col-md-offset-3">
 			<div class="panel panel-primary">
 				<div class="panel-heading">Upload new Lesson</div>
 				<div class="panel-body">
@@ -63,7 +63,7 @@ echo_html_header(array('vendor/assets/css/fileinput.css', 'assets/css/setup.css'
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+		<div class="col-xs-12 col-md-6 col-md-offset-3">
 			<div class="panel panel-default">
 				<div class="panel-heading">Existing Lessons</div>
 				<table class="table table-hover">

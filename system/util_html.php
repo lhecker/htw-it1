@@ -45,6 +45,7 @@ function echo_html_footer($js = array()) {
 			<div class="collapse navbar-collapse" id="navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="index.php">Lektionsauswahl</a></li>
+					<li><a href="stats.php">Statistik</a></li>
 					<li><a href="setup.php">Setup</a></li>
 				</ul>
 			</div>

@@ -1,6 +1,7 @@
 <?php
 require 'system/util.php';
 
+
 try {
 	$it = new LessonIterator();
 } catch (Exception $e) {

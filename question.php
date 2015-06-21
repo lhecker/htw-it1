@@ -1,6 +1,7 @@
 <?php
 require 'system/util.php';
 
+
 $param_lesson = param_get_required('lesson');
 $param_dir = intval(param_post('dir'));
 $param_answer = param_post('answer');
@@ -87,7 +88,7 @@ echo_html_header(array('assets/css/question.css'));
 		<?php require 'system/question_swap_partial.php' ?>
 	</div>
 	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-sm-offset-6 col-lg-4 col-lg-offset-6">
+		<div class="col-xs-12 col-md-6 col-md-offset-6 col-lg-4 col-lg-offset-6">
 			<button type="submit" class="btn btn-lg btn-success">Überprüfen</button>
 		</div>
 	</div>

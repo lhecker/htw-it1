@@ -2,13 +2,36 @@
 
 require 'util_html.php';
 require 'util_http.php';
+require 'util_php.php';
 
 
-function str_endswith($haystack, $needle) {
-	$haystacklen = strlen($haystack);
-	$needlelen = strlen($needle);
-	return $needlelen <= $haystacklen && substr_compare($haystack, $needle, $haystacklen - $needlelen, $needlelen) === 0;
+function lesson_stats_path($name) {
+	return __DIR__ . '/../lessons/' . $name . '.txt.stats';
 }
+
+function lesson_stats($name) {
+	$stats_path = lesson_stats_path($name);
+	$stats = @file_get_contents($stats_path);
+
+	if ($stats) {
+		$stats = json_decode($stats);
+	}
+
+	if (!$stats || !isset($stats->total) || !is_int($stats->total) || !isset($stats->correct) || !is_int($stats->correct)) {
+		return false;
+	}
+
+	return $stats;
+}
+
+function set_lesson_stats($name, $stats) {
+	$stats_path = lesson_stats_path($name);
+
+	if (!@file_put_contents($stats_path, json_encode($stats))) {
+		exit_with_500('Could not update stats file.');
+	}
+}
+
 
 
 class LessonIterator implements Iterator {

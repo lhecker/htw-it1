@@ -1,0 +1,12 @@
+#stats-container th {
+	white-space: nowrap;
+}
+
+#stats-container td:first-child {
+	width: 100%;
+}
+
+#stats-container th:nth-child(n+2),
+#stats-container td:nth-child(n+2) {
+	text-align: right;
+}

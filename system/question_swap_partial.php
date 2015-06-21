@@ -1,7 +1,7 @@
 <div class="col-xs-12 col-sm-6">
 	<div class="panel panel-default" id="question-panel">
+		<input type="hidden" name="question" value="<?php echo_safe($question) ?>"/>
 		<div class="panel-body panel-content-lg">
-			<input type="hidden" name="question" value="<?php echo_safe($question) ?>"/>
 			<?php echo_safe($question) ?>
 		</div>
 		<?php if ($pronunciation): ?>
@@ -13,9 +13,9 @@
 </div>
 <div class="col-xs-12 col-sm-6">
 	<ul class="nav nav-pills nav-stacked" id="question-answer-selection">
-		<?php foreach ($answers as $idx => $answer): ?>
+		<?php foreach ($answers as $answer): ?>
 			<li>
-				<input type="radio" name="answer" value="<?php echo_safe($answer) ?>"<?php if ($idx === 0) echo ' checked="checked"' ?>/>
+				<input type="radio" name="answer" value="<?php echo_safe($answer) ?>"/>
 				<a href="#"><?php echo_safe($answer) ?></a>
 			</li>
 		<?php endforeach ?>
